@@ -139,6 +139,19 @@
 
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/button_save_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save" />
+
     <!--Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"

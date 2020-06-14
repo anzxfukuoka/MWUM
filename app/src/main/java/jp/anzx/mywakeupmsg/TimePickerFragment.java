@@ -25,7 +25,7 @@ public class TimePickerFragment extends DialogFragment
     public TextView timeView;
     public String pref_key;
 
-    static SimpleDateFormat sdf;
+    Utils utils;
 
     public void setTimeView(TextView timeView) {
         this.timeView = timeView;
@@ -51,7 +51,7 @@ public class TimePickerFragment extends DialogFragment
         selectedHour = hourOfDay;
         selectedMinute = minute;
 
-        String formattedTime = formatTime(selectedHour, selectedMinute);
+        String formattedTime = Utils.formatTime(selectedHour, selectedMinute);
 
         //update view
         if(timeView != null){
@@ -59,33 +59,18 @@ public class TimePickerFragment extends DialogFragment
         }
 
         //save pref
-        Context context = getContext();
+        /*Context context = getContext();
         SharedPreferences sharedPref = context.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(pref_key, formattedTime);
-        editor.apply();
-    }
+        editor.apply();*/
 
-    public static String formatTime(int hours, int minutes) {
-        sdf = new SimpleDateFormat("HH:mm");
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, hours);
-        cal.set(Calendar.MINUTE, minutes);
+        //хуйня какая-то
 
-        String strTime = sdf.format(cal.getTime());
-        Log.i("♥", strTime);
-        return strTime;
-    }
+        utils = new Utils(getContext(), getString(R.string.preference_file_key));
+        utils.Save(pref_key, formattedTime);
 
-    public static Calendar parseTime(String strTime){
-        Calendar time = Calendar.getInstance();
-        try {
-            time.setTime(sdf.parse(strTime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return time; //.get(Calendar.HOUR_OF_DAY)
     }
 }

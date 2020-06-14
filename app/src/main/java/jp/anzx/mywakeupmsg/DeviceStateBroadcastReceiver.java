@@ -8,10 +8,14 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class DeviceStateBroadcastReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DeviceStateBroadcastReceiver";
     private Context context;
+    private Utils utils;
 
     public void start(Context context){
 
@@ -22,6 +26,8 @@ public class DeviceStateBroadcastReceiver extends BroadcastReceiver {
         filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         context.registerReceiver(this, filter);
+
+        utils = new Utils(context, context.getString(R.string.preference_file_key));
     }
 
     @Override
@@ -46,8 +52,32 @@ public class DeviceStateBroadcastReceiver extends BroadcastReceiver {
                 Log.i(TAG, "устройство входит в спящий режим");
             } else {
                 // the device just woke up from doze mode
-                notifUtil.showNotification("!", "добро пожаловать, снова.", 42);
+
+                String msgText = utils.getById(R.string.msg_text_key);
+
+                //Calendar now = Calendar.getInstance();
+                //now.set(1970 ,0 ,1);
+
+                Date now = new Date();
+
+                String msgTitle = Utils.formatTime(now);
+
+                String startStr = utils.getById(R.string.time_wake_start_key);
+                String endStr = utils.getById(R.string.time_wake_end_key);
+
+                Date start = Utils.parseTime(startStr);
+                Date end = Utils.parseTime(endStr);
+
+                if(Utils.compareTimes(now, start) > 0 && Utils.compareTimes(now, end) < 0){
+                    notifUtil.showNotification(msgTitle, msgText, 42);
+                }
+                else{
+                    notifUtil.showNotification(msgTitle, "снова ты здесь?", 43);
+                }
                 Log.i(TAG, "устройство выходит из спящего режима");
+                //Log.i(TAG, now.get(Calendar.HOUR_OF_DAY) + " " + start.get(Calendar.HOUR_OF_DAY) + " " + end.get(Calendar.HOUR_OF_DAY));
+                //Log.i(TAG, now.get(Calendar.MINUTE) + " " + start.get(Calendar.MINUTE) + " " + end.get(Calendar.MINUTE));
+                Log.i(TAG, now.getTime() + " ! " + start.getTime() + " ! " + end.getTime());
             }
         }
 
@@ -57,14 +87,6 @@ public class DeviceStateBroadcastReceiver extends BroadcastReceiver {
         * adb shell dumpsys deviceidle unforce
         * adb shell dumpsys battery reset
         * */
-
-        //Intent in = new Intent(context, DeviceStateMonitoringService.class);
-        //context.startService(in);
-
-        //Toast.makeText(context, log, Toast.LENGTH_LONG).show();
-
-        //NotifUtil notifUtil = new NotifUtil(context);
-        //notifUtil.showNotification("Action: " + intent.getAction(), "URI: " + intent.toUri(Intent.URI_INTENT_SCHEME), 42);
     }
 
     public void stop(){

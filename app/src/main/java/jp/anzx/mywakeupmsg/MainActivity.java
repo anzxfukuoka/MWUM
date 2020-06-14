@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,14 +29,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Intent service;
 
     NotifUtil notifUtil;
+    Utils utils;
 
     Button btnStart,
             btnStop,
             btnChangeWakeStart,
-            btnChangeWakeEnd;
+            btnChangeWakeEnd,
+            btnSaveText;
 
     TextView wakeTimeStart,
             wakeTimeEnd;
+
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +59,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         wakeTimeStart = findViewById(R.id.text_time_wake_start);
         wakeTimeEnd = findViewById(R.id.text_time_wake_end);
 
+        btnSaveText = findViewById(R.id.button_save_text);
+
+        editText = findViewById(R.id.edit_text);
+
         //
         btnStart.setOnClickListener(this);
         btnStop.setOnClickListener(this);
         btnChangeWakeEnd.setOnClickListener(this);
         btnChangeWakeStart.setOnClickListener(this);
+        btnSaveText.setOnClickListener(this);
 
         //
         notifUtil = new NotifUtil(this);
         service = new Intent(getApplicationContext(), DeviceStateMonitoringService.class);
 
+        utils = new Utils(this, getString(R.string.preference_file_key));
         //
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -81,14 +92,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     void LoadPrefs(){
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = utils.getSharedPref();
 
         String wakeTimeStartStr = sharedPref.getString(getString(R.string.time_wake_start_key), "09:00");
         String wakeTimeEndStr = sharedPref.getString(getString(R.string.time_wake_end_key), "13:00");
+        String msgText = sharedPref.getString(getString(R.string.msg_text_key), "");
 
         wakeTimeStart.setText(wakeTimeStartStr);
         wakeTimeEnd.setText(wakeTimeEndStr);
+        editText.setText(msgText);
     }
 
     @Override
@@ -106,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_wake_end_change:
                 timePicker.setTimeView(wakeTimeEnd);
-                timePicker.setPref_key(getString(R.string.time_wake_end_key));
+                timePicker.setPref_key(getString(R.string.time_wake_end_key)); //и это тоже
 
                 timePicker.show(getSupportFragmentManager(), "timePicker");
                 break;
@@ -116,6 +128,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 timePicker.show(getSupportFragmentManager(), "timePicker");
                 break;
+            case R.id.button_save_text:
+                String msgText = editText.getText().toString();
+                utils.Save(getString(R.string.msg_text_key), msgText);
+
+                Toast.makeText(this, "сохранено", Toast.LENGTH_SHORT).show();
         }
     }
 
