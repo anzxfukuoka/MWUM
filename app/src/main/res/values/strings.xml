@@ -7,4 +7,5 @@
     <string name="time_wake_start_key">WSTART</string>
     <string name="time_wake_end_key">WEND</string>
     <string name="msg_text_key">MSGTXT</string>
+    <string name="log_text_key">LOGTXT</string>
 </resources>

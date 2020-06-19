@@ -58,17 +58,6 @@ public class TimePickerFragment extends DialogFragment
             timeView.setText(formattedTime);
         }
 
-        //save pref
-        /*Context context = getContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(pref_key, formattedTime);
-        editor.apply();*/
-
-        //хуйня какая-то
-
         utils = new Utils(getContext(), getString(R.string.preference_file_key));
         utils.Save(pref_key, formattedTime);
 

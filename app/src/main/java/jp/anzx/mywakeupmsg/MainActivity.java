@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText editText;
 
+    TextView logView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSaveText = findViewById(R.id.button_save_text);
 
         editText = findViewById(R.id.edit_text);
+
+        logView = findViewById(R.id.log_text);
 
         //
         btnStart.setOnClickListener(this);
@@ -97,10 +101,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String wakeTimeStartStr = sharedPref.getString(getString(R.string.time_wake_start_key), "09:00");
         String wakeTimeEndStr = sharedPref.getString(getString(R.string.time_wake_end_key), "13:00");
         String msgText = sharedPref.getString(getString(R.string.msg_text_key), "");
+        String logText = sharedPref.getString(getString(R.string.log_text_key), "");
 
         wakeTimeStart.setText(wakeTimeStartStr);
         wakeTimeEnd.setText(wakeTimeEndStr);
         editText.setText(msgText);
+        logView.setText(logText);
+
     }
 
     @Override
