@@ -47,35 +47,16 @@ public class DeviceStateBroadcastReceiver extends BroadcastReceiver {
 
         Reminder reminder = new Reminder(context);
 
-        final NotifUtil notifUtil = new NotifUtil(context);
-
-        Date now = new Date();
-
-        final String msgText = utils.getById(R.string.msg_text_key);
-        final String msgTitle = Utils.formatTime(now);
-
-        String startStr = utils.getById(R.string.time_wake_start_key);
-        String endStr = utils.getById(R.string.time_wake_end_key);
-
-        Date start = Utils.parseTime(startStr);
-        Date end = Utils.parseTime(endStr);
 
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             Log.i(TAG,"Screen went OFF");
-            //Toast.makeText(context, "screen OFF",Toast.LENGTH_LONG).show();
-
-            saveLog("SCREEN OFF");
+            //saveLog("SCREEN OFF");
 
             reminder.onScreenOn();
 
         } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             Log.i(TAG,"Screen went ON");
-            //Toast.makeText(context, "screen ON",Toast.LENGTH_LONG).show();
-
-            saveLog("SCREEN ON");
-            //if(lastEvent.equals(PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED)){
-            //    notifUtil.showNotification(msgTitle, msgText, 42);
-            //}
+            //saveLog("SCREEN ON");
 
             reminder.onScreenOff();
 
@@ -88,35 +69,16 @@ public class DeviceStateBroadcastReceiver extends BroadcastReceiver {
             if (pm.isDeviceIdleMode()) {
                 // the device is now in doze mode
                 Log.i(TAG, "устройство входит в спящий режим");
-                saveLog("IDLE MODE");
+                //saveLog("IDLE MODE");
 
                 reminder.onIDLEMode();
 
             } else {
                 // the device just woke up from doze mode
-                saveLog("ACTIVE MODE");
+                //saveLog("ACTIVE MODE");
 
                 reminder.onActiveMode();
 
-                if(Utils.compareTimes(now, start) > 0 && Utils.compareTimes(now, end) < 0){
-                    //SystemClock.sleep(7000);
-
-                    /*if(lastEvent.equals(Intent.ACTION_SCREEN_OFF)){
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                // Do something after
-                                notifUtil.showNotification(msgTitle, msgText, 42);
-                            }
-                        }, 20000);
-                    }*/
-
-                    //notifUtil.showNotification(msgTitle, msgText, 42);
-                }
-                else{
-                    //notifUtil.showNotification(msgTitle, "снова ты здесь?", 43);
-                }
                 Log.i(TAG, "устройство выходит из спящего режима");
             }
         }

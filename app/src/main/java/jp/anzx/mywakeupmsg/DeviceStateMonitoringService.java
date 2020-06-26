@@ -28,7 +28,7 @@ public class DeviceStateMonitoringService extends Service {
 
         //лепит пуш увед к сервесу
         NotifUtil notifUtil = new NotifUtil(getApplicationContext());
-        Notification notification = notifUtil.createNotification("+.+.+.+.+.+", ">_<");
+        Notification notification = notifUtil.createNotification("･｡･ﾟ★｡･*･　ﾟ☆ﾟ･", "MWUM is working");
         startForeground(1, notification);
 
         //
@@ -42,6 +42,5 @@ public class DeviceStateMonitoringService extends Service {
     public void onDestroy() {
         super.onDestroy();
         staterec.stop();
-
     }
 }

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 
 public class Utils {
 
@@ -25,6 +28,13 @@ public class Utils {
         //save pref
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(pref_key, val);
+        editor.apply();
+    }
+
+    public void Save(String pref_key, String[] val){
+        //save pref
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putStringSet(pref_key, new HashSet<>(Arrays.asList(val)));
         editor.apply();
     }
 

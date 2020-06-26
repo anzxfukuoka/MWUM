@@ -21,8 +21,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,7 +44,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView wakeTimeStart,
             wakeTimeEnd;
 
+    ViewFlipper vf;
+
     EditText editText;
+
+    //хуита
+    EditText editTextMon;
+    EditText editTextTue;
+    EditText editTextWed;
+    EditText editTextThu;
+    EditText editTextFri;
+    EditText editTextSat;
+    EditText editTextSun;
 
     TextView logView;
 
@@ -63,7 +78,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnSaveText = findViewById(R.id.button_save_text);
 
+        vf = findViewById(R.id.vf);
+
         editText = findViewById(R.id.edit_text);
+
+        //хуита
+        editTextMon = findViewById(R.id.edit_text_mon);
+        editTextTue = findViewById(R.id.edit_text_tue);
+        editTextWed = findViewById(R.id.edit_text_wed);
+        editTextThu = findViewById(R.id.edit_text_thu);
+        editTextFri = findViewById(R.id.edit_text_fri);
+        editTextSat = findViewById(R.id.edit_text_sat);
+        editTextSun = findViewById(R.id.edit_text_sun);
 
         logView = findViewById(R.id.log_text);
 
@@ -100,13 +126,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String wakeTimeStartStr = sharedPref.getString(getString(R.string.time_wake_start_key), "09:00");
         String wakeTimeEndStr = sharedPref.getString(getString(R.string.time_wake_end_key), "13:00");
+
         String msgText = sharedPref.getString(getString(R.string.msg_text_key), "");
+
+        //хуита
+        String msgTextMon = sharedPref.getString(getString(R.string.msg_text_mon_key), "");
+        String msgTextTue = sharedPref.getString(getString(R.string.msg_text_tue_key), "");
+        String msgTextWed = sharedPref.getString(getString(R.string.msg_text_wed_key), "");
+        String msgTextThu = sharedPref.getString(getString(R.string.msg_text_thu_key), "");
+        String msgTextFri = sharedPref.getString(getString(R.string.msg_text_fri_key), "");
+        String msgTextSat = sharedPref.getString(getString(R.string.msg_text_sat_key), "");
+        String msgTextSun = sharedPref.getString(getString(R.string.msg_text_sun_key), "");
+
         String logText = sharedPref.getString(getString(R.string.log_text_key), "");
+
+        String mode = sharedPref.getString(getString(R.string.mode_key), Reminder.SIMPLE_MODE);
 
         wakeTimeStart.setText(wakeTimeStartStr);
         wakeTimeEnd.setText(wakeTimeEndStr);
+
         editText.setText(msgText);
+
+        //хуита
+        editTextMon.setText(msgTextMon);
+        editTextTue.setText(msgTextTue);
+        editTextWed.setText(msgTextWed);
+        editTextThu.setText(msgTextThu);
+        editTextFri.setText(msgTextFri);
+        editTextSat.setText(msgTextSat);
+        editTextSun.setText(msgTextSun);
+
         logView.setText(logText);
+
+        switch (mode){
+            case Reminder.SIMPLE_MODE:
+                vf.setDisplayedChild(0);
+                break;
+            case Reminder.ONCE_MODE:
+                vf.setDisplayedChild(0);
+                break;
+            case Reminder.WEEKLY_MODE:
+                vf.setDisplayedChild(1);
+                break;
+        }
 
     }
 
@@ -137,7 +199,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_save_text:
                 String msgText = editText.getText().toString();
+
                 utils.Save(getString(R.string.msg_text_key), msgText);
+
+                //хуита
+                utils.Save(getString(R.string.msg_text_mon_key), editTextMon.getText().toString());
+                utils.Save(getString(R.string.msg_text_tue_key), editTextTue.getText().toString());
+                utils.Save(getString(R.string.msg_text_wed_key), editTextWed.getText().toString());
+                utils.Save(getString(R.string.msg_text_thu_key), editTextThu.getText().toString());
+                utils.Save(getString(R.string.msg_text_fri_key), editTextFri.getText().toString());
+                utils.Save(getString(R.string.msg_text_sat_key), editTextSat.getText().toString());
+                utils.Save(getString(R.string.msg_text_sun_key), editTextSun.getText().toString());
 
                 Toast.makeText(this, "сохранено", Toast.LENGTH_SHORT).show();
         }
@@ -158,7 +230,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_simple) {
+            Toast.makeText(this, "simple", Toast.LENGTH_SHORT).show();
+            vf.setDisplayedChild(0);
+            utils.Save(getString(R.string.mode_key), Reminder.SIMPLE_MODE);
+            return true;
+        }
+        if (id == R.id.action_once) {
+            Toast.makeText(this, "once", Toast.LENGTH_SHORT).show();
+            vf.setDisplayedChild(0);
+            utils.Save(getString(R.string.mode_key), Reminder.ONCE_MODE);
+            return true;
+        }
+        if (id == R.id.action_weekly) {
+            Toast.makeText(this, "weekly", Toast.LENGTH_SHORT).show();
+            vf.setDisplayedChild(1);
+            utils.Save(getString(R.string.mode_key), Reminder.WEEKLY_MODE);
             return true;
         }
 

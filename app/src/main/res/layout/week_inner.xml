@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_day_name_mon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_mon"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/edit_text_mon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_day_name_tue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_tue"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_tue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_day_name_wed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_wed"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_wed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_day_name_thu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_thu"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_thu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_day_name_fri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_fri"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_fri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_day_name_sat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_sat"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_sat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_day_name_sun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weekday_sun"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_sun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="   "
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+</LinearLayout>

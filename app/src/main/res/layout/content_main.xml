@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:text="Start" />
+                    android:text="@string/start_btn" />
 
                 <Button
                     android:id="@+id/button_stop"
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:text="Stop" />
+                    android:text="@string/stop_btn" />
 
             </LinearLayout>
 
@@ -81,7 +81,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Edit"
+                        android:text="@string/edit_btn"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -94,7 +94,7 @@
                         android:layout_marginStart="60dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="TextView"
+                        android:text="--:--"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Edit"
+                        android:text="@string/edit_btn"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +140,7 @@
                         android:layout_marginStart="60dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="TextView"
+                        android:text="--:--"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -149,37 +149,34 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/edit_text"
+            <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/vf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
+                android:paddingTop="16dp"
+                android:measureAllChildren="false"
+                >
+
+                <include layout="@layout/simple_once_inner" />
+                <include layout="@layout/week_inner" />
+
+
+            </ViewFlipper>
 
             <Button
                 android:id="@+id/button_save_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="save" />
+                android:text="@string/save_btn" />
 
-            <ScrollView
+            <TextView
+                android:id="@+id/log_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/log_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="20dp"
-                        android:text="TextView"
-                        android:textColor="@color/colorAccent" />
-                </LinearLayout>
-            </ScrollView>
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
