@@ -70,7 +70,8 @@ public class NotifUtil {
                     // Set the intent that will fire when the user taps the notification
                     .setContentIntent(pendingIntent)
                     //automatically removes the notification when the user taps it.
-                    .setAutoCancel(true);
+                    .setAutoCancel(true)
+                    .setShowWhen(true);
 
             notification = builder.build();
 
@@ -82,7 +83,8 @@ public class NotifUtil {
                     .setContentText(text)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setContentIntent(pendingIntent)
-                    .setAutoCancel(true);
+                    .setAutoCancel(true)
+                    .setShowWhen(true);
 
             notification = builder.build();
         }
