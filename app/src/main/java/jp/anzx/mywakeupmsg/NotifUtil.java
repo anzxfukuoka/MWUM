@@ -64,7 +64,7 @@ public class NotifUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             Notification.Builder builder = new Notification.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setSmallIcon(R.drawable.ic_blue)
                     .setContentTitle(title)
                     .setContentText(text)
                     // Set the intent that will fire when the user taps the notification
@@ -78,7 +78,7 @@ public class NotifUtil {
         } else {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setSmallIcon(R.drawable.ic_blue)
                     .setContentTitle(title)
                     .setContentText(text)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
